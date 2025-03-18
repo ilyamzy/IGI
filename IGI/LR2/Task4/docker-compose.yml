@@ -34,8 +34,6 @@ services:
       - "8080:80"
     depends_on:
       - back
-    volumes:
-      - ./Music:/usr/share/nginx/html
     networks:
       - music_network
 
