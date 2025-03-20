@@ -2,27 +2,41 @@
 Выполнил Малиновский Илья, группа 353502
 Вариант 19
 Задание 2
-Разложение функции в степенной ряд
+Нахождения произведения последних цифр чисел
 11.02.2025
 """
 
-def last_digits_product():
-    """
-    Считывает целые числа, пока не введётся 0, и выводит произведение их последних цифр
-    """
 
-    result_product = 1
+def input_data():
+    """
+    Считывает целые числа, пока не введётся 0.
+    Возвращает список чисел.
+    """
+    nums = []
     while True:
         try:
-            x = int(input("Введите целое число (если хотите завершить ввод, введите 0:\n"))
-
+            x = int(input("Введите целое число "
+                          "(если хотите завершить ввод, введите 0):\n"))
             if x == 0:
                 break
-            result_product *= abs(x) % 10
+            nums.append(x)
         except ValueError:
             print("Ошибка ввода!")
+    return nums
 
-    print(result_product)
 
-if __name__ == "__main__":
-    last_digits_product()
+def get_mul_last_digits(nums):
+    """
+    Получает список целых чисел и возвращает
+    произведение их последних цифр
+    """
+    result = 1
+    for num in nums:
+        result *= num % 10
+    return result
+
+
+def task_2():
+    nums = input_data()
+    mul = get_mul_last_digits(nums)
+    print(mul)
