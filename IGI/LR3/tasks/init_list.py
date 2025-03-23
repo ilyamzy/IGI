@@ -49,20 +49,18 @@ def input_list_by_count():
     return nums
 
 
-def generate_list(
-        count_nums=None,
-        min_val=None,
-        max_val=None
+def generate_float_value(
+        type=float,
+        min_val=-1000,
+        max_val=1000
 ):
-    if count_nums is None:
-        count_nums = random.randint(100, 1000)
-    if min_val is None:
-        min_val = random.uniform(-1000, 1000)
-    if max_val is None:
-        max_val = min_val + random.uniform(10, 1000)
+    """Генератор рандомных вещественных чисел"""
+    yield random.uniform(min_val, max_val)
 
-    return [random.uniform(min_val, max_val) for _ in range(count_nums)]
-
+def generate_list():
+    """Генерирует генератор списка"""
+    count = random.randint(100, 1000)
+    return [next(generate_float_value()) for _ in range(count)]
 
 def choose_init_method(func):
     def wrapper():
